@@ -7,7 +7,7 @@ import { IconButton } from "@mui/material";
 
 let clicked = false;
 
-const Header = () => {
+const Header = ({paymentModalRef}) => {
 //   const [isSearch, setIsSearch] = useState(false);
   const logoRef = useRef()
   const searchBoxRef = useRef()
@@ -119,7 +119,9 @@ const Header = () => {
         </div>
       </div>
       {/* header right */}
-      <IconButton>
+      <IconButton onClick={()=>{
+        paymentModalRef.current.handleOpen();
+      }}>
         <div className="relative rounded-full p-1">
           <ShoppingCartSharpIcon
             sx={{
