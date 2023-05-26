@@ -5,6 +5,8 @@ import Home from "../Pages/Home/Home";
 import User from "../Pages/User/User";
 import Login from "../Pages/Login/Login";
 import UserProtected from "./UserProtected";
+import Category from "../Pages/Category/Category";
+import CategoryItems from "../Pages/CategoryItems/CategoryItems";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +16,21 @@ const router = createBrowserRouter([
             {
                 index:true,
                 element:<Home/>,
+                
+            },
+            {
+                path:'category',
+            
+                children:[
+                    {
+                        index:true,
+                        element:<Category/>,
+                    },
+                    {
+                        path:':categoryId',
+                        element:<CategoryItems/>
+                    }
+                ]
                 
             },
             {
@@ -29,6 +46,17 @@ const router = createBrowserRouter([
         ]
        
     },
+    // {
+    //     path:'/category',
+    //     element:<Category/>,
+    //     children: [
+    //         {
+    //             path:'/category',
+    //             element:<Category/>
+    //         }
+    //     ]
+
+    // },
     {
         path:'/login',
         element:<Login/>,
@@ -38,6 +66,10 @@ const router = createBrowserRouter([
                 element:<Login/>
             }
         ]
+    },
+    {
+        path:'/profile',
+        element:<Login/>
     }
 ])
 // import Body from '../Components/Body/Body';
