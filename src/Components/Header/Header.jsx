@@ -5,8 +5,28 @@ import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import { IconButton } from "@mui/material";
 
+let clicked = false;
+
 const Header = () => {
-  const [isSearch, setIsSearch] = useState(false);
+//   const [isSearch, setIsSearch] = useState(false);
+  const logoRef = useRef()
+  const searchBoxRef = useRef()
+  const searchBoxContainerRef = useRef()
+
+
+
+  const searchButtonClickHandle = ()=>{
+    if(clicked){
+         logoRef.current.style = 'display:none;'
+         searchBoxRef.current.style = 'display:inline-block;'
+         searchBoxContainerRef.current.style.backgroundColor = '#f3f5f6'
+    }else{
+        logoRef.current.style = 'display:inline-block;'
+        searchBoxRef.current.style = 'display:none;'
+        searchBoxContainerRef.current.style.backgroundColor = 'inherit'
+    }
+  }
+
   return (
     <header
       style={{
@@ -32,10 +52,11 @@ const Header = () => {
         </IconButton>
 
         <h1
+        ref={logoRef}
           style={{
             display:
               window.innerWidth < 640
-                ? isSearch
+                ? clicked
                   ? "none"
                   : "inline-block"
                 : "inline-block",
@@ -45,10 +66,11 @@ const Header = () => {
           HIRU <span className="text-blue-800">DEV</span>
         </h1>
         <div
+        ref={searchBoxContainerRef}
           style={{
             backgroundColor:
               window.innerWidth < 640
-                ? isSearch
+                ? clicked
                   ? "#f3f5f6"
                   : "inherit"
                 : "#f3f5f6",
@@ -56,10 +78,11 @@ const Header = () => {
           className="overflow-hidden ml-2 flex items-center rounded-full bg-[#f3f5f6]"
         >
           <input
+          ref={searchBoxRef}
             style={{
               display:
                 window.innerWidth < 640
-                  ? isSearch
+                  ? clicked
                     ? "inline-block"
                     : "none"
                   : "inline-block",
@@ -74,7 +97,10 @@ const Header = () => {
           <IconButton
             onClick={() => {
               if (window.innerWidth < 640) {
-                setIsSearch(!isSearch);
+                // setIsSearch(!isSearch);
+                clicked = !clicked
+                searchButtonClickHandle()
+                console.log(clicked);
               }
             }}
           >
@@ -82,7 +108,7 @@ const Header = () => {
               sx={{
                 color:
                   window.innerWidth < 640
-                    ? isSearch
+                    ? clicked
                       ? "text-gray-400"
                       : "black"
                     : "text-gray-400",
@@ -102,7 +128,7 @@ const Header = () => {
               height: "1.25rem",
             }}
           />
-          <div className="absolute top-[2px] flex w-3 h-3 rounded-full items-center justify-center right-0 text-[7px] text-white bg-black rounded-full">1</div>
+          <div className="absolute top-[2px] flex w-3 h-3 items-center justify-center right-0 text-[7px] text-white bg-black rounded-full">1</div>
         </div>
       </IconButton>
     </header>

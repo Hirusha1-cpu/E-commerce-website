@@ -5,37 +5,37 @@ const categoryArr = [
   {
     imageUrl:
       "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg",
-    title: "Ocean",
+    title: "category title 1",
     categoryId:'category1'
   },
   {
     imageUrl:
       "https://media.istockphoto.com/id/1093110112/photo/picturesque-morning-in-plitvice-national-park-colorful-spring-scene-of-green-forest-with-pure.jpg?s=612x612&w=0&k=20&c=lpQ1sQI49bYbTp9WQ_EfVltAqSP1DXg0Ia7APTjjxz4=",
-    title: "Ocean",
+    title: "category title 2",
     categoryId:'category2'
   },
   {
     imageUrl:
       "https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=",
-    title: "Ocean",
+    title: "category title 3",
     categoryId:'category3'
   },
   {
     imageUrl:
       "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg",
-    title: "Ocean",
+    title: "category title 4",
     categoryId:'category4'
   },
   {
     imageUrl:
       "https://media.istockphoto.com/id/1093110112/photo/picturesque-morning-in-plitvice-national-park-colorful-spring-scene-of-green-forest-with-pure.jpg?s=612x612&w=0&k=20&c=lpQ1sQI49bYbTp9WQ_EfVltAqSP1DXg0Ia7APTjjxz4=",
-    title: "Ocean",
+    title: "category title 5",
     categoryId:'category5'
   },
   {
     imageUrl:
       "https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=",
-    title: "Ocean",
+    title: "category title 6",
     categoryId:'category6'
   },
 ];
@@ -50,10 +50,10 @@ const Category = () => {
             "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
         }}
       >
-        <h1 className="text-xl font-bold text-stone-900">Main Categories</h1>
+        <h1 className="text-xl font-bold text-stone-900 mt-2 ml-2 mb-3">Main Categories</h1>
         <div className="grid grid-cols-3 grid-rows-[auto] gap-5 mr-5">
           {categoryArr.map(({ imageUrl, title , categoryId}, index) => (
-            <CategoryItems key={index} imageUrl={imageUrl} title={title} categoryId={categoryId} />
+            <CategoryUnitItems key={index} imageUrl={imageUrl} title={title} categoryId={categoryId} />
           ))}
         </div>
       </div>
@@ -62,7 +62,7 @@ const Category = () => {
 };
 
 export default Category;
-const CategoryItems = ({ imageUrl, title ,categoryId}) => (
+const CategoryUnitItems = ({ imageUrl, title ,categoryId}) => (
     <Link to={`/category/${categoryId}`}>
     <div>
 
