@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/material";
+import { IconButton, ListItemButton } from "@mui/material";
 import React from "react";
 import {Link } from "react-router-dom";
 const categoryArr = [
@@ -42,16 +42,16 @@ const categoryArr = [
 
 const Category = () => {
   return (
-    <div className="px-5 py-[100px] w-full h-screen overflow-y-scroll">
+    <div className=" px-5  py-[100px] w-full h-screen overflow-y-scroll">
       <div
-        className="w-full p-2 "
+        className="w-full p-2 pr-0 pl-5 "
         style={{
           boxShadow:
             "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
         }}
       >
         <h1 className="text-xl font-bold text-stone-900 mt-2 ml-2 mb-3">Main Categories</h1>
-        <div className="grid grid-cols-3 grid-rows-[auto] gap-5 mr-5">
+        <div className="grid grid-cols-2 md:grid-cols-4  grid-rows-[auto] gap-5 mr-5">
           {categoryArr.map(({ imageUrl, title , categoryId}, index) => (
             <CategoryUnitItems key={index} imageUrl={imageUrl} title={title} categoryId={categoryId} />
           ))}
@@ -64,7 +64,7 @@ const Category = () => {
 export default Category;
 const CategoryUnitItems = ({ imageUrl, title ,categoryId}) => (
     <Link to={`/category/${categoryId}`}>
-    <div>
+    {/* <div>
 
   <IconButton
     sx={{
@@ -72,13 +72,20 @@ const CategoryUnitItems = ({ imageUrl, title ,categoryId}) => (
       padding: "1px",
       borderRadius: "6px",
     }}
-  >
-    <section
-      style={{
+  > */}
+    <ListItemButton sx={{
+        padding:0,
+        margin:0,
         boxShadow:
           "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
-      }}
-      className="m-1 w-full p-6 rounded-lg border-2 border-gray-300 flex flex-col items-center"
+        borderRadius: '6px',
+        backgroundColor: 'transparent', 
+
+    }}>
+
+    <section
+      
+      className="m-1 w-full p-6  rounded-lg border-2 border-gray-300  items-center"
     >
       <img
         src={imageUrl}
@@ -86,9 +93,10 @@ const CategoryUnitItems = ({ imageUrl, title ,categoryId}) => (
         className="rounded-full
      w-[50px] h-[50px] "
       />
-      <h2 className="text-[15px] text-black mt-3 font-serif">Category Item</h2>
+      <h2 className="text-[15px] flex flex-col sm:text-sm text-black mt-3 font-serif">Category Item</h2>
     </section>
-  </IconButton>
-    </div>
+    </ListItemButton>
+  {/* </IconButton>
+    </div> */}
     </Link>
 );

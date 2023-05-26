@@ -20,13 +20,18 @@ const Footer = () => {
     }}
       className="fixed bottom-0 left-0 z-[100] w-full 
     drop-shadow-header-shadow py-1 px-2 bg-my-background 
-    flex items-center justify-between"
+    flex items-center justify-between md:justify-start"
     >
-      
+
       <FooterIcon clickFun={{whoIsClick, setWhoIsClick}} Icon={HomeOutlinedIcon} iconText='Home'/>
      
       <FooterIcon clickFun={{whoIsClick, setWhoIsClick}} Icon={AppsIcon} iconText="Category" />
+       <div className="md:flex-1 md:text-right">
+        
       <FooterIcon clickFun={{whoIsClick, setWhoIsClick}} Icon={AccountCircleOutlinedIcon} iconText="Profile" />
+       </div>
+
+      
      
     </footer>
   );

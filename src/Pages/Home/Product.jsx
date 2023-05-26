@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
-import { IconButton, Rating } from "@mui/material";
+import { IconButton, ListItemButton, Rating } from "@mui/material";
 
 const productArr = [
   {
@@ -110,16 +110,22 @@ const ProductUnit = ({ imageUrl, price, productTitle, id }) => (
       borderRadius: "5px",
       color: "red",
       margin:"3px",
-      marginBottom: "30px",
+      marginBottom: "10px",
     }}
   >
-    <div className="w-full mb-7">
+
+
+    <div className="w-full mb-7 relative pb-4">
       <img
         src={imageUrl}
         alt={`product_unit_${id}`}
         className="w-full object-contain"
       />
-      <h3 className="text-sm font-semibold text-stone-900">{productTitle}</h3>
+      <div className="px-1 sm:px-2">
+
+      <h3 className="text-xs sm:text-sm text-justify font-semibold text-stone-900">
+        {String(productTitle).substring(0,24)}{String(productTitle).length>=50? "...": null}
+        </h3>
       <Rating 
       name={imageUrl}
       value={3.5}
@@ -128,7 +134,10 @@ const ProductUnit = ({ imageUrl, price, productTitle, id }) => (
       defaultValue={2} size="small" 
       />
       <h3 className="text-stone-900 font-bold text-lg">Rs.{price}</h3>
+      </div>
     </div>
+      <div className="absolute top-0 left-0 w-full h-full hover:bg-blue-400 opacity-30"></div>
+ 
     
   </IconButton>
 )
