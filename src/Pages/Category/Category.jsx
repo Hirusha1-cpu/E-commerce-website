@@ -1,46 +1,53 @@
 import { IconButton, ListItemButton } from "@mui/material";
-import React from "react";
+import React,{useEffect, useState} from "react";
 import {Link } from "react-router-dom";
-const categoryArr = [
-  {
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg",
-    title: "category title 1",
-    categoryId:'category1'
-  },
-  {
-    imageUrl:
-      "https://media.istockphoto.com/id/1093110112/photo/picturesque-morning-in-plitvice-national-park-colorful-spring-scene-of-green-forest-with-pure.jpg?s=612x612&w=0&k=20&c=lpQ1sQI49bYbTp9WQ_EfVltAqSP1DXg0Ia7APTjjxz4=",
-    title: "category title 2",
-    categoryId:'category2'
-  },
-  {
-    imageUrl:
-      "https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=",
-    title: "category title 3",
-    categoryId:'category3'
-  },
-  {
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg",
-    title: "category title 4",
-    categoryId:'category4'
-  },
-  {
-    imageUrl:
-      "https://media.istockphoto.com/id/1093110112/photo/picturesque-morning-in-plitvice-national-park-colorful-spring-scene-of-green-forest-with-pure.jpg?s=612x612&w=0&k=20&c=lpQ1sQI49bYbTp9WQ_EfVltAqSP1DXg0Ia7APTjjxz4=",
-    title: "category title 5",
-    categoryId:'category5'
-  },
-  {
-    imageUrl:
-      "https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=",
-    title: "category title 6",
-    categoryId:'category6'
-  },
-];
+import getDataFromCollection from "../../Utils/dataFetch/getDataFromCollection";
+// const categoryArr = [
+//   {
+//     imageUrl:
+//       "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg",
+//     title: "category title 1",
+//     categoryId:'category1'
+//   },
+//   {
+//     imageUrl:
+//       "https://media.istockphoto.com/id/1093110112/photo/picturesque-morning-in-plitvice-national-park-colorful-spring-scene-of-green-forest-with-pure.jpg?s=612x612&w=0&k=20&c=lpQ1sQI49bYbTp9WQ_EfVltAqSP1DXg0Ia7APTjjxz4=",
+//     title: "category title 2",
+//     categoryId:'category2'
+//   },
+//   {
+//     imageUrl:
+//       "https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=",
+//     title: "category title 3",
+//     categoryId:'category3'
+//   },
+//   {
+//     imageUrl:
+//       "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg",
+//     title: "category title 4",
+//     categoryId:'category4'
+//   },
+//   {
+//     imageUrl:
+//       "https://media.istockphoto.com/id/1093110112/photo/picturesque-morning-in-plitvice-national-park-colorful-spring-scene-of-green-forest-with-pure.jpg?s=612x612&w=0&k=20&c=lpQ1sQI49bYbTp9WQ_EfVltAqSP1DXg0Ia7APTjjxz4=",
+//     title: "category title 5",
+//     categoryId:'category5'
+//   },
+//   {
+//     imageUrl:
+//       "https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=",
+//     title: "category title 6",
+//     categoryId:'category6'
+//   },
+// ];
 
 const Category = () => {
+    //useEffect ehekin function eka call krna welawa control krnw, rerender weema control krnw
+    const [categoryData, setCategoryData] = useState([])
+    useEffect(()=>{
+        getDataFromCollection('category',setCategoryData);
+    },[]) //dependency array eken component eka create wena mukl awastawe witrai useEffect eka thula me call back function eka run wenne
+    console.log('category component data',categoryData);
   return (
     <div className=" px-5  py-[100px] w-full h-screen overflow-y-scroll">
       <div
@@ -52,8 +59,12 @@ const Category = () => {
       >
         <h1 className="text-xl font-bold text-stone-900 mt-2 ml-2 mb-3">Main Categories</h1>
         <div className="grid grid-cols-2 md:grid-cols-4  grid-rows-[auto] gap-5 mr-5">
-          {categoryArr.map(({ imageUrl, title , categoryId}, index) => (
-            <CategoryUnitItems key={index} imageUrl={imageUrl} title={title} categoryId={categoryId} />
+          {categoryData?.map(({ img, title , categoryId}, index) => (
+            <CategoryUnitItems 
+            key={index} 
+            imageUrl={img} 
+            title={title} 
+            categoryId={categoryId} />
           ))}
         </div>
       </div>

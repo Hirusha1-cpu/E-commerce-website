@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import { categorySelector } from "../../Store/ReduxSlice/categorySlice";
 import { useParams } from "react-router-dom";
 import { ListItemButton, Rating } from "@mui/material";
 import { IconButton } from "@mui/material";
+import getDataFromCollection from "../../Utils/dataFetch/getDataFromCollection";
 
 const categoryItemArr = [
   {
@@ -39,15 +40,23 @@ const categoryItemArr = [
 ];
 
 const CategoryItems = () => {
-  const category = useSelector(categorySelector);
-  console.log(category);
-  const { categoryId } = useParams();
-  const [categoryTitle] = category.filter((ele) => ele.id === categoryId);
-  console.log(categoryTitle);
+    // const category = useSelector(categoryItemData);
+    // console.log(category);
+    // const { categoryId } = useParams();
+    // const categoryTitle = category.filter((ele) => ele.id === categoryId);
+    // console.log(categoryTitle);
+  //useEffect ehekin function eka call krna welawa control krnw, rerender weema control krnw
+    const [categoryItemData, setCategoryItemData] = useState([]);
+    useEffect(() => {
+        getDataFromCollection("categoryItems", setCategoryItemData);
+    }, []); //dependency array eken component eka create wena mukl awastawe witrai useEffect eka thula me call back function eka run wenne
+    console.log("category component data", categoryItemData);
+ 
   return (
     <div className="px-5 py-[100px] w-full h-screen overflow-y-scroll">
       <h1 className="text-xl font-bold text-stone-900 mt-2 ml-2 mb-3 ">
-        {categoryTitle.title}
+        {/* {categoryTitle} */}
+
       </h1>
       <section
         style={{
@@ -57,8 +66,8 @@ const CategoryItems = () => {
         className="m-1 w-full p-6 rounded-lg border-2 border-gray-300 flex flex-col items-center"
       >
         <div className="w-full grid grid-cols-2 md:grid-cols-4  grid-rows-[auto] gap-4">
-          {categoryItemArr.map(({ imageUrl, title }, index) => (
-            <CategoryItemUnit key={index} imageUrl={imageUrl} title={title} />
+          {categoryItemData?.map(({ img, title }, index) => (
+            <CategoryItemUnit key={index} imageUrl={img} title={title} />
           ))}
         </div>
       </section>
