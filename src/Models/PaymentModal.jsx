@@ -13,9 +13,10 @@ const PaymentModal = (props, ref) => {
     handleOpen: () => setOpen(true)
   }))
   const addData = ()=>{
-    setDoc(doc(db, "categoryItems","categoryItem6"), { //(collection = category = table ekak, eka row ekak samana wenw atule thyena data wlat, id part ekata samanai collection id eka)
-        title: "categoryItem title 6 ",
-        img: "https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg",
+    setDoc(doc(db, "category/category2/category2","category2_item5"), { //(collection = category = table ekak, eka row ekak samana wenw atule thyena data wlat, id part ekata samanai collection id eka)
+        title: "category2-title5 ",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvIzpE0RtC7z7mNKlGCfZVu-76ycBg8B0nPw&usqp=CAU",
+        rating:2.3
   
       })
       .then(() => {

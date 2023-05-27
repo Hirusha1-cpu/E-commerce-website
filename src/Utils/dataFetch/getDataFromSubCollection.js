@@ -5,11 +5,9 @@ const dbData = {
     category:[]
 }
 
-const getDataFromCollection = (collectionName,setFunction) => {
-   if(dbData[collectionName]&& dbData[collectionName].length>0){
-    setFunction(dbData[collectionName])
-   }else{
-    getDocs(collection(db, collectionName)).then((querySnapshot) => {
+const getDataFromSubCollection = (collectionName,documentId,subCollectionName,setFunction) => {
+   
+    getDocs(collection(db, `${collectionName}/${subCollectionName}/${documentId}`)).then((querySnapshot) => {
         //console.log(querySnapshot);
         console.log('data read from collection');
 
@@ -20,12 +18,12 @@ const getDataFromCollection = (collectionName,setFunction) => {
             dataArr.push({...doc.data(),categoryId:doc.id});
             console.log(doc.id, " => ", doc.data());
         });
-        dbData[collectionName] = dataArr;
+       // dbData[collectionName] = dataArr;
         //console.log(dataArr);
         setFunction(dataArr)
     })
    }
-}
 
 
-export default getDataFromCollection;
+
+export default getDataFromSubCollection;

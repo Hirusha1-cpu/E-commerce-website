@@ -2,6 +2,7 @@ import { IconButton, ListItemButton } from "@mui/material";
 import React,{useEffect, useState} from "react";
 import {Link } from "react-router-dom";
 import getDataFromCollection from "../../Utils/dataFetch/getDataFromCollection";
+import Loading from "../../Components/Loading/Loading";
 // const categoryArr = [
 //   {
 //     imageUrl:
@@ -48,6 +49,12 @@ const Category = () => {
         getDataFromCollection('category',setCategoryData);
     },[]) //dependency array eken component eka create wena mukl awastawe witrai useEffect eka thula me call back function eka run wenne
     console.log('category component data',categoryData);
+
+    if(categoryData.length === 0) {
+        return(
+            <Loading/>
+        )
+    }
   return (
     <div className=" px-5  py-[100px] w-full h-screen overflow-y-scroll">
       <div
