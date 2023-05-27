@@ -8,6 +8,9 @@ import UserProtected from "./UserProtected";
 import Category from "../Pages/Category/Category";
 import CategoryItems from "../Pages/CategoryItems/CategoryItems";
 import ItemPage from "../Pages/ItemPage/ItemPage";
+import AdminProtected from "./AdminProtected";
+import Admin from "../Pages/Admin/Admin";
+import NoUrl from "../Pages/404/NoUrl";
 
 const router = createBrowserRouter([
     {
@@ -49,7 +52,7 @@ const router = createBrowserRouter([
                 element:<UserProtected/>,
                 children:[
                     {
-                        path:'user',
+                        path:'profile',
                         element:<User/>
 
                     }
@@ -80,8 +83,23 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path:'/profile',
-        element:<Login/>
+        path:'/404',
+        element:<NoUrl/>,
+    },
+    {
+        path:'/login',
+        element:<Login/>,
+    },
+    {
+        
+        element:<AdminProtected/>,
+        children:[
+            {
+                path:'/admin',
+                element:<Admin/>
+            }
+        ]
+
     }
 ])
 // import Body from '../Components/Body/Body';
